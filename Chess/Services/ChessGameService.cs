@@ -89,7 +89,17 @@ public class ChessGameService
 
         if (piece.Type == ChessPieceType.Pawn)
         {
-           
+            int direction = piece.Color == PieceColor.White ? -1 : 1;
+
+            if (sourceX + direction == targetX && sourceY == targetY && chessBoard.GetPiece(targetX, targetY) == null)
+                return true;
+
+            if (sourceX + direction == targetX && Math.Abs(sourceY - targetY) == 1 && chessBoard.GetPiece(targetX, targetY) != null)
+                return true;
+
+            if (sourceX == 1 && sourceX + (2 * direction) == targetX && sourceY == targetY &&
+                chessBoard.GetPiece(targetX, targetY) == null && chessBoard.GetPiece(sourceX + direction, targetY) == null)
+                return true;
         }
         else if (piece.Type == ChessPieceType.Rook)
         {
