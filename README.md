@@ -1,1 +1,1 @@
-# Chess
+# A chess application
